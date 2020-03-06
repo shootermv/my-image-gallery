@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'my-gallery-controls',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gallery-controls.component.css']
 })
 export class GalleryControlsComponent implements OnInit {
-
+  @Input() showSearch: boolean;
+  @Input() showPagination: boolean;
   constructor() { }
 
   ngOnInit(): void {

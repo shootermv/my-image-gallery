@@ -5,7 +5,10 @@ import { Component, OnInit, Input } from '@angular/core';
   template: `
     
     <div class="images-list">
-      <my-gallery-controls></my-gallery-controls>
+      <my-gallery-controls 
+        [showSearch]="showSearch" 
+        [showPagination]="showPagination"
+      ></my-gallery-controls>
       <ul>
         <li *ngFor="let img of images">
           <my-gallery-image [image]="img"></my-gallery-image>
@@ -17,9 +20,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MyGalleryComponent implements OnInit {
   @Input() images: any[];
+  @Input('search') showSearch: boolean = true;
+  @Input('pagination') showPagination: boolean = true;
+
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

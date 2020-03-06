@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyGalleryComponent } from './my-gallery.component';
+import { Component } from '@angular/core';
+@Component({
+  selector: 'my-gallery-controls',
+  template: ''
+})
+class MockGalleryControlsComponent {}
 
 describe('MyGalleryComponent', () => {
   let component: MyGalleryComponent;
@@ -8,7 +14,7 @@ describe('MyGalleryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyGalleryComponent ]
+      declarations: [ MyGalleryComponent, MockGalleryControlsComponent ]
     })
     .compileComponents();
   }));
@@ -16,6 +22,7 @@ describe('MyGalleryComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MyGalleryComponent);
     component = fixture.componentInstance;
+    component.images = []
     fixture.detectChanges();
   });
 

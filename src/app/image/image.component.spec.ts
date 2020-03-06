@@ -16,6 +16,7 @@ describe('ImageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageComponent);
     component = fixture.componentInstance;
+    component.image = {title: '', url: ''}
     fixture.detectChanges();
   });
 

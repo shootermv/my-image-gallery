@@ -10,7 +10,7 @@ export class GalleryControlsComponent implements OnInit {
   @Input() showPagination: boolean;
   @Input() showSorting: boolean;
   
-
+  @Output() onSort = new EventEmitter();
   @Output() onSearch = new EventEmitter();
   constructor() { }
 
@@ -18,7 +18,10 @@ export class GalleryControlsComponent implements OnInit {
   }
 
   search(e) {
-    console.log(e.target.value)
     this.onSearch.emit(e.target.value);
+  }
+
+  sortBy(e) {
+    this.onSort.emit(e.target.value);
   }
 }

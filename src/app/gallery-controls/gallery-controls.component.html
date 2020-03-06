@@ -2,8 +2,14 @@
     <div *ngIf="showPagination">pagination</div>
     <div>per-page</div>
     <div>slideshow</div>
-    <div *ngIf="showSorting">sort by</div>
+    <div *ngIf="showSorting">
+        <select (change)="sortBy($event)">
+          <option value="">sort by</option>
+          <option value="title">Title</option>
+          <option value="date">Date</option>
+        </select>
+    </div>
     <div *ngIf="showSearch">
-        <input (input)="search($event)" placeholder="search"/>
+        <input (input)="search($event)" placeholder="search" name="search"/>
     </div>
 </section>

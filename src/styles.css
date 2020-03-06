@@ -1,1 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+   
+  }
+  
+  body {
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  a {text-decoration: none;}
+
+
+
+  ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .images-list {
+    padding: 20px;  
+  }
+
+  .images-list ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+
+  .images-list li {
+    border: 1px solid #333;
+    background: #fff; 
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    transition: transform 0.5s;
+  }
+
+  .images-list li:hover {
+    transform: scale(1.1);
+  }
+
+  .images-list li img.main {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .images-list li div {
+    padding: 5px 10px;
+  }
+
+  .images-list li .actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+ 
+  .images-list li .actions img { 
+    height: 15px;
+    cursor: pointer;
+  }
+
+  #modal {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #modal:empty {
+    display: none;
+  }
+  
+  #modal > div {
+    background-color: white;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  #modal .buttons button {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  #modal header {position: relative;}
+
+  #modal header .modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #modal header img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: auto;    
+  }
+
+  #modal .modal-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+    row-gap: 5px;
+  }

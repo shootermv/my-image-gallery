@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MyGalleryComponent } from './my-gallery/my-gallery.component';
 import { ImageComponent } from './image/image.component';
+import { GalleryControlsComponent } from './gallery-controls/gallery-controls.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyGalleryComponent,
-    ImageComponent
+    ImageComponent,
+    GalleryControlsComponent
   ],
   imports: [
     BrowserModule

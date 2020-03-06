@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
       <my-gallery-controls 
         [showSearch]="showSearch" 
         [showPagination]="showPagination"
+        [showSorting]="showSorting"
       ></my-gallery-controls>
       <ul>
         <li *ngFor="let img of images">
@@ -22,7 +23,7 @@ export class MyGalleryComponent implements OnInit {
   @Input() images: any[];
   @Input('search') showSearch: boolean = true;
   @Input('pagination') showPagination: boolean = true;
-
+  @Input('sorting') showSorting: boolean = true;
 
   constructor() { }
 

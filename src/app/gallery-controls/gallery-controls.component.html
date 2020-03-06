@@ -2,6 +2,6 @@
     <div *ngIf="showPagination">pagination</div>
     <div>per-page</div>
     <div>slideshow</div>
-    <div>sort by</div>
+    <div *ngIf="showSorting">sort by</div>
     <div *ngIf="showSearch">search</div>
 </section>

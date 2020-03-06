@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
         [showSearch]="showSearch" 
         [showPagination]="showPagination"
         [showSorting]="showSorting"
+        (onSearch)="onSearch($event)"
       ></my-gallery-controls>
       <ul>
         <li *ngFor="let img of imagesToDisplay">
@@ -27,18 +28,31 @@ export class MyGalleryComponent implements OnInit {
   @Input('per-page') perPage: Number = 10;
 
   imagesToDisplay: any[];
-  currentPage: Number = 2;
+  currentPage: Number = 1;
 
   // private
-  private paginateImages(images, perPage, currentPage) {
-     let offset = (currentPage - 1) * perPage;
-     return images.slice(offset, offset + perPage);
+  private term = '';
+  private sortBy;
+  private paginateImages(images, perPage, currentPage, term = '', sortBy) {
+    
+    let filterCb = !term.trim() ? () => true : ({title}) => title.toLowerCase().includes(term.toLowerCase());
+    let offset = (currentPage - 1) * perPage;
+    return images.filter(filterCb).slice(offset, offset + perPage);
   } 
 
-  constructor() { }
+  // handlers
+  onSearch(term) {
+    this.term = term;
+    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy)
+  }
+
+  onSort(term) {
+
+  }
+
 
   ngOnInit(): void {
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage)
+    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy)
   }
 
 }

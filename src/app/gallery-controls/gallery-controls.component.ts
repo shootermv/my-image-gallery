@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'my-gallery-controls',
@@ -10,9 +10,15 @@ export class GalleryControlsComponent implements OnInit {
   @Input() showPagination: boolean;
   @Input() showSorting: boolean;
   
+
+  @Output() onSearch = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  search(e) {
+    console.log(e.target.value)
+    this.onSearch.emit(e.target.value);
+  }
 }

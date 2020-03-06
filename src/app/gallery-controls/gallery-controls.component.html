@@ -3,5 +3,7 @@
     <div>per-page</div>
     <div>slideshow</div>
     <div *ngIf="showSorting">sort by</div>
-    <div *ngIf="showSearch">search</div>
+    <div *ngIf="showSearch">
+        <input (input)="search($event)" placeholder="search"/>
+    </div>
 </section>

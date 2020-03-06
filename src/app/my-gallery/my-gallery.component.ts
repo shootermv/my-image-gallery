@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'my-gallery',
@@ -9,8 +9,10 @@ import { Component, OnInit, Input } from '@angular/core';
         [showSearch]="showSearch" 
         [showPagination]="showPagination"
         [showSorting]="showSorting"
+        [perPage]="perPage"
         (onSearch)="onSearch($event)"
         (onSort)="onSort($event)"
+        (onPerPage)="perPageChanged($event)"
       ></my-gallery-controls>
       <ul>
         <li *ngFor="let img of imagesToDisplay">
@@ -26,10 +28,15 @@ export class MyGalleryComponent implements OnInit {
   @Input('search') showSearch: Boolean = true;
   @Input('pagination') showPagination: Boolean = true;
   @Input('sorting') showSorting: Boolean = true;
-  @Input('per-page') perPage: Number = 10;
+  @Input('per-page') 
+  set perPageVal(_perPage: Number) {
+    this.perPage = _perPage;
+  }
 
+  // public
   imagesToDisplay: any[];
   currentPage: Number = 1;
+  perPage: Number = 10;
 
   // private
   private term = '';
@@ -51,6 +58,11 @@ export class MyGalleryComponent implements OnInit {
     this.sortBy = sortBy;
     this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
   }
+
+  perPageChanged(_perPage) {
+    this.perPage = _perPage;
+    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+  } 
 
   // livecycle
   ngOnInit(): void {

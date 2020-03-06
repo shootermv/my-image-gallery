@@ -1,6 +1,10 @@
 <section>
     <div *ngIf="showPagination">pagination</div>
-    <div>per-page</div>
+    <div>
+        <select (change)="perPageChanged($event)" >
+           <option *ngFor="let quantity of [5, 10, 15, 20]" [value]="quantity" [selected]="perPage===quantity">{{quantity}}</option>
+        </select>        
+    </div>
     <div>slideshow</div>
     <div *ngIf="showSorting">
         <select (change)="sortBy($event)">

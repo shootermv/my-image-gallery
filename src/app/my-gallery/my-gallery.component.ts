@@ -11,7 +11,7 @@ import { Component, OnInit, Input } from '@angular/core';
         [showSorting]="showSorting"
       ></my-gallery-controls>
       <ul>
-        <li *ngFor="let img of images">
+        <li *ngFor="let img of imagesToDisplay">
           <my-gallery-image [image]="img"></my-gallery-image>
         </li>
       </ul>
@@ -21,14 +21,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MyGalleryComponent implements OnInit {
   @Input() images: any[];
-  @Input('search') showSearch: boolean = true;
-  @Input('pagination') showPagination: boolean = true;
-  @Input('sorting') showSorting: boolean = true;
+  @Input('search') showSearch: Boolean = true;
+  @Input('pagination') showPagination: Boolean = true;
+  @Input('sorting') showSorting: Boolean = true;
+  @Input('per-page') perPage: Number = 10;
+
+  imagesToDisplay: any[];
+  currentPage: Number = 2;
+
+  // private
+  private paginateImages(images, perPage, currentPage) {
+     let offset = (currentPage - 1) * perPage;
+     return images.slice(offset, offset + perPage);
+  } 
 
   constructor() { }
 
   ngOnInit(): void {
-    
+    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage)
   }
 
 }

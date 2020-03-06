@@ -9,6 +9,7 @@ export class GalleryControlsComponent implements OnInit {
   @Input() showSearch: boolean;
   @Input() showPagination: boolean;
   @Input() showSorting: boolean;
+  
   constructor() { }
 
   ngOnInit(): void {

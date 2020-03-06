@@ -4,6 +4,7 @@ import { Component, OnInit,Input } from '@angular/core';
   selector: 'my-gallery-image',
   template: `
     <img class="main" src="{{image.url}}"/>
+    <div>{{image.title}}</div>
   `,
   styleUrls: ['./image.component.css']
 })

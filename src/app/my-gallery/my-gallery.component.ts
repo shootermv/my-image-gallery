@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     <div class="images-list">
       <ul>
         <li *ngFor="let img of images">
-          <img class="main" src="{{img.url}}"/>
+          <my-gallery-image [image]="img"></my-gallery-image>
         </li>
       </ul>
     </div>

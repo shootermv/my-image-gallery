@@ -21,28 +21,3 @@
     transform: scale(1.1);
   }
 
-  .images-list li img.main {
-    object-fit: contain;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: auto;
-  }
-
-  .images-list li div {
-    padding: 5px 10px;
-  }
-
-  .images-list li .actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
- 
-  .images-list li .actions img { 
-    height: 15px;
-    cursor: pointer;
-  }

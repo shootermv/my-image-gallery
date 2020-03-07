@@ -19,7 +19,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
         (onSlideShowModeChanged)="slideShowModeChanged($event)"
       ></my-gallery-controls>
       <ul>
-        <li *ngFor="let img of imagesToDisplay; let i = index"  [ngClass]="{active: activeImg === i}">
+        <li *ngFor="let img of imagesToDisplay; let i = index" [ngClass]="{active: activeImg === i}">
           <my-gallery-image [image]="img"></my-gallery-image>
         </li>
         <img *ngIf="isSlideShow" src="{{imagesToDisplay[activeImg].url}}" class="active" default="http://placecorgi.com/600/600"/>
@@ -69,6 +69,7 @@ export class MyGalleryComponent implements OnInit {
   private term = '';
   private sortBy;
   private interval;
+
   // handlers
   onSearch(term) {
     this.term = term;

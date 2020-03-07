@@ -1,5 +1,7 @@
 <section>
-    <div *ngIf="showPagination">pagination</div>
+    <div *ngIf="showPagination">
+        <gallery-paginator [currentPage]="currentPage" [total]="total"></gallery-paginator>
+    </div>
     <div>
         <select (change)="perPageChanged($event)" >
            <option *ngFor="let quantity of [5, 10, 15, 20]" [value]="quantity" [selected]="perPage===quantity">{{quantity}}</option>

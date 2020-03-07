@@ -6,20 +6,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./gallery-controls.component.css']
 })
 export class GalleryControlsComponent implements OnInit {
+  // inputs
   @Input() showSearch: boolean;
   @Input() showPagination: boolean;
   @Input() showSorting: boolean;
-
   @Input() perPage;
+  @Input() currentPage;
+  @Input() total;
 
-
+  // outputs
   @Output() onSort = new EventEmitter();
   @Output() onSearch = new EventEmitter();
   @Output() onPerPage = new EventEmitter();
- 
-
+  @Output() onCurrentPageChanged = new EventEmitter(); 
+  
+  // lifecycle
   ngOnInit(): void {
-    console.log(`perPage: ${this.perPage}`)
   }
 
   // handlers
@@ -33,5 +35,9 @@ export class GalleryControlsComponent implements OnInit {
 
   perPageChanged(e) {
     this.onPerPage.emit(e.target.value);
+  }
+
+  currentPageChanged(page) {
+    this.onCurrentPageChanged.emit(page);
   }
 }

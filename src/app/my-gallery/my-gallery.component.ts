@@ -57,7 +57,12 @@ export class MyGalleryComponent implements OnInit {
 
     // pagination logic
     let offset = (currentPage - 1) * perPage;
-    return sorted.slice(offset, offset + perPage);
+    let paginated = sorted.slice(offset, offset + perPage);
+
+    // calculate total pages
+    this.totalPages = Math.floor(filtered.length / perPage);
+
+    return paginated;
   } 
 
   // handlers

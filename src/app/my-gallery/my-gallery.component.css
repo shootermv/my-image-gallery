@@ -6,6 +6,29 @@
     grid-gap: 20px;
   }
 
+  img.active {
+    display: none;
+  }
+
+  .images-list.slideshow ul {
+    display: grid;
+    grid-column-gap: 0;
+    grid-row-gap: 20px;
+    grid-template-rows: 20px 1fr;
+    grid-template-columns: repeat(20, 20px);
+  }
+  .images-list.slideshow ul li.active{ 
+    border: 1px solid red;
+  }
+  .images-list.slideshow img.active {
+    display: block;
+    grid-row: 2;
+    align-self: center;
+  }
+
+  .images-list.slideshow ::ng-deep my-gallery-image img{ height: 20px;}
+  .images-list.slideshow ::ng-deep my-gallery-image div{ display:none;}
+
   .images-list li {
     border: 1px solid #333;
     background: #fff; 
@@ -15,7 +38,7 @@
     transition: transform 0.5s;
   }
 
-  .images-list li:hover {
+  .images-list:not(.slideshow) li:hover {
     transform: scale(1.1);
   }
 

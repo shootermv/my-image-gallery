@@ -19,7 +19,8 @@ export class GalleryControlsComponent implements OnInit {
   @Output() onSearch = new EventEmitter();
   @Output() onPerPage = new EventEmitter();
   @Output() onCurrentPageChanged = new EventEmitter(); 
-
+  @Output() onSlideShowModeChanged = new EventEmitter();
+  
   // lifecycle
   ngOnInit(): void {
   }
@@ -42,6 +43,6 @@ export class GalleryControlsComponent implements OnInit {
   }
 
   slideShowModeChanged(isInSlideShowMode) { 
-    console.log(`isSlideShow: ${isInSlideShowMode}`)
+    this.onSlideShowModeChanged.emit(isInSlideShowMode);
   }
 }

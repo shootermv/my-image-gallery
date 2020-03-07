@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
   selector: 'my-gallery',
   template: `
     
-    <div class="images-list">
+    <div class="images-list" [ngClass]="{'slideshow': isSlideShow}">
       <my-gallery-controls 
         [showSearch]="showSearch" 
         [showPagination]="showPagination"
@@ -16,11 +16,13 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
         (onSort)="onSort($event)"
         (onPerPage)="perPageChanged($event)"
         (onCurrentPageChanged)="currentPageChanged($event)"
+        (onSlideShowModeChanged)="slideShowModeChanged($event)"
       ></my-gallery-controls>
       <ul>
-        <li *ngFor="let img of imagesToDisplay">
+        <li *ngFor="let img of imagesToDisplay; let i = index"  [ngClass]="{active: activeImg === i}">
           <my-gallery-image [image]="img"></my-gallery-image>
         </li>
+        <img *ngIf="isSlideShow" src="{{imagesToDisplay[activeImg].url}}" class="active" default="http://placecorgi.com/600/600"/>
       </ul>
     </div>
   `,
@@ -43,7 +45,8 @@ export class MyGalleryComponent implements OnInit {
   currentPage: number = 1;
   perPage: number = 10;
   totalPages: number ;
-
+  isSlideShow: boolean = false;
+  activeImg: number = 0;
   public paginateImages(images, perPage: number, currentPage, term = '', sortBy) {
     // filter logic    
     let filterCb = !term.trim() ? null : ({title}) => title.toLowerCase().includes(term.toLowerCase());
@@ -65,7 +68,7 @@ export class MyGalleryComponent implements OnInit {
   // private
   private term = '';
   private sortBy;
-
+  private interval;
   // handlers
   onSearch(term) {
     this.term = term;
@@ -89,8 +92,32 @@ export class MyGalleryComponent implements OnInit {
     this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
   }
 
+  slideShowModeChanged(isSlideShow) {
+    this.isSlideShow = isSlideShow;
+    if (this.isSlideShow ) {
+      
+      this.interval = setInterval(() => {
+        if ((this.imagesToDisplay.length - 1) === this.activeImg) {        
+          this.currentPage = this.currentPage === this.totalPages ? 1 : this.currentPage + 1;
+          this.activeImg = 0;
+        } else {
+          this.activeImg++; 
+        }     
+      }, this.time * 1000);
+    } else {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    } 
+  }
+
   // livecycle
   ngOnInit(): void {
     this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+  }
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 }

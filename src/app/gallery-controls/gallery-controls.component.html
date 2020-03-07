@@ -8,7 +8,7 @@
         </select>        
     </div>
     <div>
-       Slideshow: <gallery-toggle></gallery-toggle>
+       Slideshow: <gallery-toggle (onSlideShowModeChanged)="slideShowModeChanged($event)"></gallery-toggle>
     </div>
     <div *ngIf="showSorting">
         <select (change)="sortBy($event)">

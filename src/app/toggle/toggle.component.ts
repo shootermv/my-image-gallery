@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'gallery-toggle',
   template: `
   <label class="switch">
-    <input type="checkbox">
+    <input type="checkbox" (change)="toggle($event)">
     <span class="slider round"></span>
   </label>
   `,
@@ -75,11 +75,11 @@ import { Component, OnInit } from '@angular/core';
     `
   ]
 })
-export class ToggleComponent implements OnInit {
+export class ToggleComponent  {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @Output() onSlideShowModeChanged = new EventEmitter(); 
+  toggle(e){
+    this.onSlideShowModeChanged.emit(e.target.checked);
   }
 
 }

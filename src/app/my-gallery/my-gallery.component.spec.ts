@@ -63,11 +63,20 @@ describe('MyGalleryComponent', () => {
     expect(paginated[0].id).toBe(5);
   });
 
-  it('paginateImages method - if perPage is 5 - should show 2 if after filtering is 2', () => {
+  it('paginateImages method filtering - if perPage is 5 - should show 2 if after filtering is 2', () => {
     let images = new Array(20).fill({}), perPage = 5, currentPage = 1, term = 'a', sortBy = null;
     images = images.map((item, idx) => ({id: idx, title: [18, 19].includes(idx) ? 'a' : 'z'}));
     let paginated  = component.paginateImages(images, perPage, currentPage, term, sortBy);
 
     expect(paginated.length).toBe(2);
   });
+
+  it('paginateImages method sorting - ordered correctly by title', () => {
+    let images = new Array(5).fill({}), perPage = 5, currentPage = 1, term = '', sortBy = 'title';
+    images = images.map((item, idx) => ({id: idx, title: [0, 1, 2].includes(idx) ? 'b' : 'a'}));
+    let paginated  = component.paginateImages(images, perPage, currentPage, term, sortBy);
+
+    expect(paginated[0].title).toBe('a'); 
+    expect(paginated[4].title).toBe('b');
+  }); 
 });

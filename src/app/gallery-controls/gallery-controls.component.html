@@ -1,6 +1,6 @@
 <section>
     <div *ngIf="showPagination">
-        <gallery-paginator [currentPage]="currentPage" [total]="total"></gallery-paginator>
+        <gallery-paginator [currentPage]="currentPage" [total]="total" (onPageChanged)="onCurrentPageChanged.emit($event)"></gallery-paginator>
     </div>
     <div>
         <select (change)="perPageChanged($event)" >

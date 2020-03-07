@@ -29,24 +29,21 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 export class MyGalleryComponent implements OnInit {
   // inputs
   @Input() images: any[];
-  @Input('search') showSearch: Boolean = true;
-  @Input('pagination') showPagination: Boolean = true;
-  @Input('sorting') showSorting: Boolean = true;
+  @Input('search') showSearch: boolean = true;
+  @Input('pagination') showPagination: boolean = true;
+  @Input('sorting') showSorting: boolean = true;
   @Input('per-page') 
-  set perPageVal(_perPage: Number) {
+  set perPageVal(_perPage: number) {
     this.perPage = _perPage;
   }
 
   // public
   imagesToDisplay: any[];
-  currentPage: Number = 1;
-  perPage: Number = 10;
-  totalPages: Number ;
+  currentPage: number = 1;
+  perPage: number = 10;
+  totalPages: number ;
 
-  // private
-  private term = '';
-  private sortBy;
-  private paginateImages(images, perPage, currentPage, term = '', sortBy) {
+  public paginateImages(images, perPage: number, currentPage, term = '', sortBy) {
     // filter logic    
     let filterCb = !term.trim() ? null : ({title}) => title.toLowerCase().includes(term.toLowerCase());
     let filtered = filterCb ?  images.filter(filterCb) : images;
@@ -57,13 +54,16 @@ export class MyGalleryComponent implements OnInit {
 
     // pagination logic
     let offset = (currentPage - 1) * perPage;
-    let paginated = sorted.slice(offset, offset + perPage);
+    let paginated = sorted.slice(offset, offset + +perPage);
 
     // calculate total pages
     this.totalPages = Math.floor(filtered.length / perPage);
-
     return paginated;
   } 
+
+  // private
+  private term = '';
+  private sortBy;
 
   // handlers
   onSearch(term) {
@@ -77,6 +77,8 @@ export class MyGalleryComponent implements OnInit {
   }
 
   perPageChanged(_perPage) {
+    // should reset current page
+    this.currentPage = 1;
     this.perPage = _perPage;
     this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
   } 

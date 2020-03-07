@@ -3,11 +3,18 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 @Component({
   selector: 'gallery-paginator',
   template: `
-     <button><</button>
+     <button (click)="onPageChanged.emit(currentPage - 1)" [disabled]="currentPage === 1"><</button>
      <span>page {{currentPage}} of {{total}}</span>
-     <button>></button>
+     <button (click)="onPageChanged.emit(currentPage + 1)" [disabled]="currentPage === total">></button>
   `,
-  styleUrls: ['./gallery-paginator.component.css']
+  styles: [
+    `
+     button {
+       cursor: pointer;
+       margin: 2px;
+     }
+    `
+  ]
 })
 export class GalleryPaginatorComponent implements OnInit {
   // inputs
@@ -15,9 +22,10 @@ export class GalleryPaginatorComponent implements OnInit {
   @Input() total = 3;
 
   // outputs
-  // @Output()
+  @Output() onPageChanged = new EventEmitter();
 
+  // lifecycle
   ngOnInit(): void {
-  }
-
+  } 
+  
 }

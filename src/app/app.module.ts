@@ -7,6 +7,7 @@ import { ImageComponent } from './image/image.component';
 import { GalleryControlsComponent } from './gallery-controls/gallery-controls.component';
 import { GalleryPaginatorComponent } from './gallery-paginator/gallery-paginator.component';
 import { ImagePreloadDirective } from './image-preload.directive';
+import { ToggleComponent } from './toggle/toggle.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ImagePreloadDirective } from './image-preload.directive';
     ImageComponent,
     GalleryControlsComponent,
     GalleryPaginatorComponent,
-    ImagePreloadDirective
+    ImagePreloadDirective,
+    ToggleComponent
   ],
   imports: [
     BrowserModule

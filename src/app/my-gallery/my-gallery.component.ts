@@ -36,6 +36,7 @@ export class MyGalleryComponent implements OnInit {
   set perPageVal(_perPage: number) {
     this.perPage = _perPage;
   }
+  @Input('transition-time') time: number;
 
   // public
   imagesToDisplay: any[];

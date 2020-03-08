@@ -33,7 +33,6 @@ import { HttpClient } from '@angular/common/http';
 export class MyGalleryComponent implements OnInit {
   // inputs
   @Input() feed: any;
-  @Input() images: any[];
   @Input('search') showSearch: boolean = true;
   @Input('pagination') showPagination: boolean = true;
   @Input('sorting') showSorting: boolean = true;
@@ -51,6 +50,7 @@ export class MyGalleryComponent implements OnInit {
   isSlideShow: boolean = false;
   activeImg: number = 0;
   imageToShowInDialog: number = -1;
+  images: any[] = [];
   public paginateImages(images, perPage: number, currentPage, term = '', sortBy) {
     // filter logic    
     let filterCb = !term.trim() ? null : ({title}) => title.toLowerCase().includes(term.toLowerCase());

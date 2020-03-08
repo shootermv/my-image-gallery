@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyGalleryComponent } from './my-gallery.component';
 import { ImageComponent } from './image/image.component';
@@ -21,6 +21,7 @@ import { GalleryDialogComponent } from './gallery-dialog/gallery-dialog.componen
     GalleryDialogComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule
   ],
   exports:[MyGalleryComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'my-gallery',
@@ -31,6 +32,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class MyGalleryComponent implements OnInit {
   // inputs
+  @Input() feed: any;
   @Input() images: any[];
   @Input('search') showSearch: boolean = true;
   @Input('pagination') showPagination: boolean = true;
@@ -114,13 +116,16 @@ export class MyGalleryComponent implements OnInit {
     } 
   }
 
-  myalert(index) {
-    alert(index)
-  }
-
   // livecycle
+  constructor(
+    private http: HttpClient,
+  ) {}
+
   ngOnInit(): void {
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    this.http.get(this.feed).subscribe(data=>{
+      this.images = <any[]>data;
+      this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    });
   }
 
   ngOnDestroy() {

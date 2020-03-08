@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'NaftalisBarmizva';
+  feed="http://localhost:3000/feed.json"
   images = [{
         "title": "1 Blue river (much better in original size - press)",
         "url": "http://farm9.static.flickr.com/8305/7893507666_0d25cd9f30.jpg",

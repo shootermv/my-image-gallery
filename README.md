@@ -1,6 +1,6 @@
 # MyImagesGallery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+This project was generated with [Demo](https://shootermv.github.io/my-image-gallery/index.html) version 9.0.4.
 
 ## Development server
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MyGalleryComponent } from './my-gallery.component';
-import { ImageComponent } from './image/image.component';
+import { ImageComponent } from './gallery-image/image.component';
 import { GalleryControlsComponent } from './gallery-controls/gallery-controls.component';
 import { GalleryPaginatorComponent } from './gallery-paginator/gallery-paginator.component';
 import { ImagePreloadDirective } from './image-preload/image-preload.directive';

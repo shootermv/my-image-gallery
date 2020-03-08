@@ -2,7 +2,7 @@
     <div *ngIf="showPagination">
         <gallery-paginator [currentPage]="currentPage" [total]="total" (onPageChanged)="onCurrentPageChanged.emit($event)"></gallery-paginator>
     </div>
-    <div>
+    <div>Items Per Page:
         <select (change)="perPageChanged($event)" >
            <option *ngFor="let quantity of [5, 10, 15, 20]" [value]="quantity" [selected]="perPage===quantity">{{quantity}}</option>
         </select>        

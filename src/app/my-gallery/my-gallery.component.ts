@@ -20,9 +20,10 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
       ></my-gallery-controls>
       <ul>
         <li *ngFor="let img of imagesToDisplay; let i = index" [ngClass]="{active: activeImg === i}">
-          <my-gallery-image [image]="img"></my-gallery-image>
+          <my-gallery-image [image]="img" (click)="imageToShowInDialog = i"></my-gallery-image>
         </li>
         <img *ngIf="isSlideShow" src="{{imagesToDisplay[activeImg].url}}" class="active" default="http://placecorgi.com/600/600"/>
+        <gallery-dialog [imageToShow]="imageToShowInDialog" [images]="images"></gallery-dialog>
       </ul>
     </div>
   `,
@@ -47,6 +48,7 @@ export class MyGalleryComponent implements OnInit {
   totalPages: number ;
   isSlideShow: boolean = false;
   activeImg: number = 0;
+  imageToShowInDialog: number = -1;
   public paginateImages(images, perPage: number, currentPage, term = '', sortBy) {
     // filter logic    
     let filterCb = !term.trim() ? null : ({title}) => title.toLowerCase().includes(term.toLowerCase());
@@ -112,10 +114,15 @@ export class MyGalleryComponent implements OnInit {
     } 
   }
 
+  myalert(index) {
+    alert(index)
+  }
+
   // livecycle
   ngOnInit(): void {
     this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
   }
+
   ngOnDestroy() {
     if (this.interval) {
       clearInterval(this.interval);

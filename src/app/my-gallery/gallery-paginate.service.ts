@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GelleryPaginateService {
+export class GalleryPaginateService {
   public paginateImages(images, perPage: number, currentPage, term = '', sortBy) {
     // filter logic    
     let filterCb = !term.trim() ? null : ({title}) => title.toLowerCase().includes(term.toLowerCase());

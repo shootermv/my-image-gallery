@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GelleryPaginateService } from './gellery-paginate.service';
+import { GalleryPaginateService } from './gallery-paginate.service';
 
 describe('GelleryPaginateService', () => {
-  let service: GelleryPaginateService;
+  let service: GalleryPaginateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GelleryPaginateService);
+    service = TestBed.inject(GalleryPaginateService);
   });
 
   it('should be created', () => {

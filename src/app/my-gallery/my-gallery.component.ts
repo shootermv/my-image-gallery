@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GelleryPaginateService } from './gellery-paginate.service';
+import { GalleryPaginateService } from './gallery-paginate.service';
 
 @Component({
   selector: 'my-gallery',
@@ -125,7 +125,7 @@ export class MyGalleryComponent implements OnInit {
   // livecycle
   constructor(
     private http: HttpClient,
-    private paginate: GelleryPaginateService
+    private paginate: GalleryPaginateService
   ) {}
 
   ngOnInit(): void {

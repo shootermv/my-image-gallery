@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GelleryPaginateService } from './gellery-paginate.service';
 
 @Component({
   selector: 'my-gallery',
@@ -73,28 +74,33 @@ export class MyGalleryComponent implements OnInit {
   private term = '';
   private sortBy;
   private interval;
+  private displayImages() {
+    let res = this.paginate.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    this.imagesToDisplay = res.paginated;
+    this.totalPages = res.totalPages;
+  }
 
   // handlers
   onSearch(term) {
     this.term = term;
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    this.displayImages();
   }
 
   onSort(sortBy) {
     this.sortBy = sortBy;
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    this.displayImages();
   }
 
   perPageChanged(_perPage) {
     // should reset current page
     this.currentPage = 1;
     this.perPage = _perPage;
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
-  } 
+    this.displayImages();
+  }
 
   currentPageChanged(_curPage) {
     this.currentPage = _curPage;
-    this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+    this.displayImages();
   }
 
   slideShowModeChanged(isSlideShow) {
@@ -119,12 +125,13 @@ export class MyGalleryComponent implements OnInit {
   // livecycle
   constructor(
     private http: HttpClient,
+    private paginate: GelleryPaginateService
   ) {}
 
   ngOnInit(): void {
     this.http.get(this.feed).subscribe(data=>{
       this.images = <any[]>data;
-      this.imagesToDisplay = this.paginateImages(this.images, this.perPage, this.currentPage, this.term, this.sortBy);
+      this.displayImages();
     });
   }
 

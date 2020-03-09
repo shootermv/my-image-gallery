@@ -7,7 +7,7 @@ import { ImageComponent } from './gallery-image/image.component';
 import { GalleryControlsComponent } from './gallery-controls/gallery-controls.component';
 import { GalleryPaginatorComponent } from './gallery-paginator/gallery-paginator.component';
 import { ImagePreloadDirective } from './image-preload/image-preload.directive';
-import { ToggleComponent } from './toggle/toggle.component';
+import { ToggleComponent } from './gallery-toggle/toggle.component';
 import { GalleryDialogComponent } from './gallery-dialog/gallery-dialog.component';
 
 @NgModule({

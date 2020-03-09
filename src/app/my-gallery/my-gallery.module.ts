@@ -6,7 +6,7 @@ import { MyGalleryComponent } from './my-gallery.component';
 import { ImageComponent } from './gallery-image/image.component';
 import { GalleryControlsComponent } from './gallery-controls/gallery-controls.component';
 import { GalleryPaginatorComponent } from './gallery-paginator/gallery-paginator.component';
-import { ImagePreloadDirective } from './image-preload/image-preload.directive';
+import { ImagePreloadDirective } from './gallery-image-preload/image-preload.directive';
 import { ToggleComponent } from './gallery-toggle/toggle.component';
 import { GalleryDialogComponent } from './gallery-dialog/gallery-dialog.component';
 
